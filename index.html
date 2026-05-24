@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>שרקפה | תשלום מהיר</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Assistant for Hebrew & English -->
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800;900&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Assistant', 'Outfit', sans-serif; 
+            overscroll-behavior-y: none; 
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+<!-- BACKGROUND IMAGE: Replace 'YOUR_BACKGROUND_PHOTO_URL_HERE.jpg' -->
+<body class="text-slate-800 min-h-screen flex flex-col relative bg-slate-100 bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('YOUR_BACKGROUND_PHOTO_URL_HERE.jpg');">
+
+    <!-- Bright overlay to soften the background photo -->
+    <div class="absolute inset-0 bg-white/40 backdrop-blur-sm z-0"></div>
+
+    <!-- Language Toggle Button -->
+    <div class="absolute top-6 left-6 z-20" dir="ltr">
+        <button id="langToggleBtn" onclick="toggleLanguage()" class="bg-white/80 hover:bg-white border border-white/50 text-slate-700 text-sm font-semibold py-2 px-4 rounded-full transition-all shadow-md backdrop-blur-md">
+            English
+        </button>
+    </div>
+
+    <!-- Main Content Container (Frosted Glass Card) -->
+    <main class="relative z-10 flex-grow flex flex-col items-center justify-center w-full max-w-md mx-auto px-6 py-12 mt-8">
+        
+        <div class="bg-white/70 backdrop-blur-md border border-white/60 shadow-2xl rounded-3xl p-8 w-full flex flex-col items-center">
+            
+            <!-- Header Section -->
+            <div class="flex flex-col items-center text-center mb-8 w-full">
+                
+                <!-- SARCAFE LOGO -->
+                <!-- Replace 'YOUR_LOGO_URL_HERE.jpg' -->
+                <div class="w-24 h-24 mb-6 rounded-full overflow-hidden shadow-lg bg-white border-4 border-white flex items-center justify-center">
+                    <img src="YOUR_LOGO_URL_HERE.jpg" alt="Sarcafe Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';">
+                    
+                    <!-- Fallback icon -->
+                    <svg id="logo-fallback" xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-500 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v8l9-11h-7z" />
+                    </svg>
+                </div>
+                
+                <h1 id="brandName" class="text-5xl font-bold tracking-tight mb-2 text-slate-900 drop-shadow-sm">
+                    שרקפה
+                </h1>
+                <p id="subtitle" class="text-slate-600 text-base leading-relaxed px-2 font-medium">
+                    בחרו את אמצעי התשלום המועדף עליכם. מהיר, מאובטח ונוח.
+                </p>
+            </div>
+
+            <!-- Buttons Section -->
+            <div class="w-full space-y-4 text-center">
+                
+                <!-- Bit Button -->
+                <a href="#" class="group relative w-full flex items-center justify-center bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 px-6 rounded-2xl font-bold text-xl overflow-hidden transition-all duration-200 active:scale-95 shadow-lg shadow-blue-900/20 hover:shadow-blue-600/40 border border-blue-500/30">
+                    <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <span id="bitText" class="relative z-10">לתשלום ב-bit</span>
+                </a>
+
+                <!-- Paybox Button -->
+                <a href="#" class="group relative w-full flex items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-4 px-6 rounded-2xl font-bold text-xl overflow-hidden transition-all duration-200 active:scale-95 shadow-lg shadow-cyan-900/20 hover:shadow-cyan-500/40 border border-cyan-400/30">
+                    <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <span id="payboxText" class="relative z-10">לתשלום ב-Paybox</span>
+                </a>
+                
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full text-center py-6 pb-8 text-sm text-slate-600 font-medium drop-shadow-sm">
+        <p id="footerSec">תשלום מאובטח באמצעות bit ו-Paybox.</p>
+        <p id="footerThanks" class="mt-1 text-slate-800">תודה שאכלתם אצלנו! 🍔</p>
+    </footer>
+
+    <!-- Language Translation Script -->
+    <script>
+        const translations = {
+            he: {
+                dir: "rtl",
+                toggleBtn: "English",
+                brandName: "שרקפה",
+                subtitle: "בחרו את אמצעי התשלום המועדף עליכם. מהיר, מאובטח ונוח.",
+                bitText: "לתשלום ב-bit",
+                payboxText: "לתשלום ב-Paybox",
+                footerSec: "תשלום מאובטח באמצעות bit ו-Paybox.",
+                footerThanks: "תודה שאכלתם אצלנו! 🍔",
+                title: "שרקפה | תשלום מהיר"
+            },
+            en: {
+                dir: "ltr",
+                toggleBtn: "עברית",
+                brandName: "Sarcafe",
+                subtitle: "Choose your preferred way to pay. Fast, secure, and hassle-free.",
+                bitText: "Pay with bit",
+                payboxText: "Pay with Paybox",
+                footerSec: "Secure payment powered by Bit & Paybox.",
+                footerThanks: "Thank you for eating with us! 🍔",
+                title: "Sarcafe | Quick Pay"
+            }
+        };
+
+        let currentLang = 'he';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'he' ? 'en' : 'he';
+            const text = translations[currentLang];
+
+            document.documentElement.dir = text.dir;
+            document.documentElement.lang = currentLang;
+            document.title = text.title;
+
+            document.getElementById('langToggleBtn').innerText = text.toggleBtn;
+            document.getElementById('brandName').innerText = text.brandName;
+            document.getElementById('subtitle').innerText = text.subtitle;
+            document.getElementById('bitText').innerText = text.bitText;
+            document.getElementById('payboxText').innerText = text.payboxText;
+            document.getElementById('footerSec').innerText = text.footerSec;
+            document.getElementById('footerThanks').innerText = text.footerThanks;
+        }
+    </script>
+</body>
+</html>
+"
