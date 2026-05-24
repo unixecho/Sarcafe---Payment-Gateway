@@ -19,26 +19,42 @@
 <!-- BACKGROUND IMAGE: Replace 'YOUR_BACKGROUND_PHOTO_URL_HERE.jpg' -->
 <body class="text-slate-800 min-h-screen flex flex-col relative bg-slate-100 bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('BG.PNG');">
 
-    <!-- Bright overlay to soften the background photo -->
-    <div class="absolute inset-0 bg-white/40 backdrop-blur-sm z-0"></div>
+    <!-- Bright overlay reduced to 20% to show more background -->
+    <div class="absolute inset-0 bg-white/20 backdrop-blur-sm z-0"></div>
 
-    <!-- Language Toggle Button -->
+    <!-- Language Dropdown Menu -->
     <div class="absolute top-6 left-6 z-20" dir="ltr">
-        <button id="langToggleBtn" onclick="toggleLanguage()" class="bg-white/80 hover:bg-white border border-white/50 text-slate-700 text-sm font-semibold py-2 px-4 rounded-full transition-all shadow-md backdrop-blur-md">
-            English
-        </button>
+        <div class="relative">
+            <!-- Main Button -->
+            <button id="langMenuBtn" onclick="toggleLangMenu()" class="bg-white/70 hover:bg-white border border-white/50 text-slate-800 text-sm font-semibold py-2 px-4 rounded-full transition-all shadow-md backdrop-blur-md flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span id="currentLangLabel">עברית</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            
+            <!-- Dropdown Options -->
+            <div id="langDropdown" class="absolute top-full left-0 mt-2 w-32 bg-white/90 backdrop-blur-md border border-white/50 rounded-xl shadow-lg overflow-hidden hidden flex-col transition-all origin-top-left">
+                <button onclick="setLanguage('he')" class="text-left px-4 py-2 text-sm text-slate-800 hover:bg-slate-100 font-medium transition-colors">עברית</button>
+                <button onclick="setLanguage('en')" class="text-left px-4 py-2 text-sm text-slate-800 hover:bg-slate-100 font-medium transition-colors">English</button>
+                <button onclick="setLanguage('ar')" class="text-left px-4 py-2 text-sm text-slate-800 hover:bg-slate-100 font-medium transition-colors" dir="rtl">العربية</button>
+            </div>
+        </div>
     </div>
 
     <!-- Main Content Container (Frosted Glass Card) -->
     <main class="relative z-10 flex-grow flex flex-col items-center justify-center w-full max-w-md mx-auto px-6 py-12 mt-8">
         
-        <div class="bg-white/70 backdrop-blur-md border border-white/60 shadow-2xl rounded-3xl p-8 w-full flex flex-col items-center">
+        <!-- Card background reduced to 40% opacity -->
+        <div class="bg-white/40 backdrop-blur-md border border-white/40 shadow-2xl rounded-3xl p-8 w-full flex flex-col items-center">
             
             <!-- Header Section -->
             <div class="flex flex-col items-center text-center mb-8 w-full">
                 
                 <!-- SARCAFE LOGO -->
-                <!-- Replace 'YOUR_LOGO_URL_HERE.jpg' -->
                 <div class="w-24 h-24 mb-6 rounded-full overflow-hidden shadow-lg bg-white border-4 border-white flex items-center justify-center">
                     <img src="YOUR_LOGO_URL_HERE.jpg" alt="Sarcafe Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';">
                     
@@ -51,7 +67,7 @@
                 <h1 id="brandName" class="text-5xl font-bold tracking-tight mb-2 text-slate-900 drop-shadow-sm">
                     שרקפה
                 </h1>
-                <p id="subtitle" class="text-slate-600 text-base leading-relaxed px-2 font-medium">
+                <p id="subtitle" class="text-slate-800 text-base leading-relaxed px-2 font-semibold">
                     בחרו את אמצעי התשלום המועדף עליכם. מהיר, מאובטח ונוח.
                 </p>
             </div>
@@ -76,9 +92,9 @@
     </main>
 
     <!-- Footer -->
-    <footer class="relative z-10 w-full text-center py-6 pb-8 text-sm text-slate-600 font-medium drop-shadow-sm">
+    <footer class="relative z-10 w-full text-center py-6 pb-8 text-sm text-slate-800 font-semibold drop-shadow-sm">
         <p id="footerSec">תשלום מאובטח באמצעות bit ו-Paybox.</p>
-        <p id="footerThanks" class="mt-1 text-slate-800">תודה שאכלתם אצלנו! 🍔</p>
+        <p id="footerThanks" class="mt-1 text-slate-900 font-bold">תודה שאכלתם אצלנו! 🍔</p>
     </footer>
 
     <!-- Language Translation Script -->
@@ -86,7 +102,7 @@
         const translations = {
             he: {
                 dir: "rtl",
-                toggleBtn: "English",
+                label: "עברית",
                 brandName: "שרקפה",
                 subtitle: "בחרו את אמצעי התשלום המועדף עליכם. מהיר, מאובטח ונוח.",
                 bitText: "לתשלום ב-bit",
@@ -97,7 +113,7 @@
             },
             en: {
                 dir: "ltr",
-                toggleBtn: "עברית",
+                label: "English",
                 brandName: "Sarcafe",
                 subtitle: "Choose your preferred way to pay. Fast, secure, and hassle-free.",
                 bitText: "Pay with bit",
@@ -105,28 +121,61 @@
                 footerSec: "Secure payment powered by Bit & Paybox.",
                 footerThanks: "Thank you for eating with us! 🍔",
                 title: "Sarcafe | Quick Pay"
+            },
+            ar: {
+                dir: "rtl",
+                label: "العربية",
+                brandName: "سركافيه",
+                subtitle: "اختر طريقة الدفع المفضلة لديك. سريع، آمن ومريح.",
+                bitText: "الدفع عبر bit",
+                payboxText: "الدفع عبر Paybox",
+                footerSec: "دفع آمن بواسطة bit و Paybox.",
+                footerThanks: "شكراً لتناول الطعام معنا! 🍔",
+                title: "سركافيه | دفع سريع"
             }
         };
 
         let currentLang = 'he';
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'he' ? 'en' : 'he';
-            const text = translations[currentLang];
+        function toggleLangMenu() {
+            const dropdown = document.getElementById('langDropdown');
+            dropdown.classList.toggle('hidden');
+            dropdown.classList.toggle('flex');
+        }
 
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('langDropdown');
+            const btn = document.getElementById('langMenuBtn');
+            if (!btn.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.add('hidden');
+                dropdown.classList.remove('flex');
+            }
+        });
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const text = translations[lang];
+
+            // Apply direction and language tags
             document.documentElement.dir = text.dir;
             document.documentElement.lang = currentLang;
             document.title = text.title;
 
-            document.getElementById('langToggleBtn').innerText = text.toggleBtn;
+            // Update text elements
+            document.getElementById('currentLangLabel').innerText = text.label;
             document.getElementById('brandName').innerText = text.brandName;
             document.getElementById('subtitle').innerText = text.subtitle;
             document.getElementById('bitText').innerText = text.bitText;
             document.getElementById('payboxText').innerText = text.payboxText;
             document.getElementById('footerSec').innerText = text.footerSec;
             document.getElementById('footerThanks').innerText = text.footerThanks;
+
+            // Close the dropdown menu
+            const dropdown = document.getElementById('langDropdown');
+            dropdown.classList.add('hidden');
+            dropdown.classList.remove('flex');
         }
     </script>
 </body>
 </html>
-"
